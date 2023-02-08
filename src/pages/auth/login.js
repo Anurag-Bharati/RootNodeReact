@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
-export default function Signin() {
+import { login } from "@/services/auth.service";
+export default function Login() {
     const router = useRouter();
     const emailRef = useRef();
     const pwdRef = useRef();
@@ -14,15 +15,26 @@ export default function Signin() {
         emailRef.current.focus();
     }, []);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        router.push("/");
+        try {
+            const res = await login({
+                username: emailRef.current.value,
+                password: pwdRef.current.value,
+            });
+            const accessToken = res?.data?.accessToken;
+            localStorage.setItem("token", `Bearer ${accessToken}`);
+            router.push("/");
+        } catch (err) {
+            if (!err?.response) setError("No Server Response");
+            setError(err?.response?.data?.message);
+        }
     };
     const registerPage = (e) => {
         e.preventDefault();
         router.push("/auth/register");
     };
-    const clearError = (e) => {
+    const clearError = () => {
         if (formErr) setError("");
     };
     return (
@@ -101,7 +113,7 @@ export default function Signin() {
                     <div className="bg-white10 rounded-2xl">
                         <img
                             className="rounded-2xl opacity-75 scale-75"
-                            src="/rootnode_w.png"
+                            src="http://localhost:5500/rootnode_w.png"
                         />
                     </div>
                 </div>

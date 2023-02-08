@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useRef, useState } from "react";
 import { register } from "@/services/auth.service";
-export default function Signin() {
+export default function Register() {
     const router = useRouter();
     const [err, setError] = useState({});
     const emailRef = useRef();
