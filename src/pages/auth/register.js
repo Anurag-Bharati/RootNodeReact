@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { useRef, useState } from "react";
+import { register } from "@/services/auth.service";
 export default function Signin() {
     const router = useRouter();
     const [err, setError] = useState({});
@@ -7,16 +8,17 @@ export default function Signin() {
     const pwdRef = useRef();
     const fnameRef = useRef();
     const lnameRef = useRef();
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
         try {
-            console.log({
+            const res = await register({
                 email: emailRef.current.value,
                 password: pwdRef.current.value,
                 fname: fnameRef.current.value,
                 lname: lnameRef.current.value,
             });
-            setError("Sorry something went wrong!");
+            if (res.status == 201) router.push("/auth/login");
+            else setError("Sorry something went wrong!");
         } catch (error) {
             setError(error);
             console.log(error);
