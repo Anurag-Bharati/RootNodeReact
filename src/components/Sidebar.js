@@ -37,7 +37,7 @@ export default function Sidebar() {
 
             <button
                 onClick={() => router.push("/auth/login")}
-                className="bg-cyan-500 text-rn-white rounded-full w-36 h-12 font-bold shadow-md hover:brightness-90 text-lg hidden xl:inline"
+                className="bg-cyan-400 text-rn-white rounded-full w-36 h-12 font-bold shadow-md hover:brightness-90 text-lg hidden xl:inline"
             >
                 Login
             </button>
