@@ -1,3 +1,4 @@
+import Sidebar from "@/components/Sidebar";
 import Head from "next/head";
 import { BiMessageSquareDots } from "react-icons/bi";
 export default function Home() {
@@ -11,7 +12,7 @@ export default function Home() {
                 />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-
+            <Sidebar />
             <main className="flex min-h-screen mx-auto  bg-rn-black text-rn-white ">
                 <div className="xl:ml-[370px] xl:min-w-[576px] sm:ml-[73px] flex-grow max-w-xl">
                     <div className="flex py-2 px-3 sticky top-0 z-50 bg-rn-black">
