@@ -8,12 +8,12 @@ import { BsHeart } from "react-icons/bs";
 import Moment from "react-moment";
 import { useState, useEffect, useId } from "react";
 import { useRouter } from "next/router";
+import Markdown from "./Markdown";
 
-export default function Post({ post, id }) {
+export default function Post({ post, id, hasLiked }) {
     const router = useRouter();
     const [likes, setLikes] = useState([]);
     const [comments, setComments] = useState([]);
-    const [hasLiked, setHasLiked] = useState(false);
     const currentUser = null;
     // for SSR + CSH Rendering strategy
     const reactId = useId();
@@ -94,12 +94,16 @@ export default function Post({ post, id }) {
             </div>
             {/* post text */}
 
-            <p
-                onClick={() => router.push(`/posts/${id}`)}
-                className=" text-[15px sm:text-[16px] mb-2"
-            >
-                {post?.caption}
-            </p>
+            {post?.type === "markdown" ? (
+                <Markdown text={post?.caption} />
+            ) : (
+                <p
+                    onClick={() => router.push(`/posts/${id}`)}
+                    className=" text-[15px sm:text-[16px] mb-2"
+                >
+                    {post?.caption}
+                </p>
+            )}
 
             <div className={`grid gap-2 grid-cols-${gridCols}`}>
                 {post.mediaFiles.map((media, i) => (
@@ -118,24 +122,22 @@ export default function Post({ post, id }) {
                     {hasLiked ? (
                         <BsHeart
                             onClick={likePost}
-                            className="h-9 w-9 hoverEffect p-2 text-[#ef476fe6] hover:bg-red-100"
+                            className="h-9 w-9 hoverEffect p-2 mr-2 text-[#ef476fe6] hover:bg-red-100"
                         />
                     ) : (
                         <BiHeart
                             onClick={likePost}
-                            className="h-9 w-9 hoverEffect p-2 hover:text-[#ef476fe6] hover:bg-red-100"
+                            className="h-9 w-9 hoverEffect p-2 mr-2  hover:text-[#ef476fe6] hover:bg-red-100"
                         />
                     )}
-                    {likes.length > 0 && (
-                        <span
-                            className={`${
-                                hasLiked && "text-[#ef476fe6]"
-                            } text-sm select-none`}
-                        >
-                            {" "}
-                            {likes.length}
-                        </span>
-                    )}
+
+                    <span
+                        className={`${
+                            hasLiked && "text-[#ef476fe6]"
+                        } text-sm select-none`}
+                    >
+                        {post?.likesCount}
+                    </span>
                 </div>
                 <div className="flex items-center select-none ">
                     <BiMessageSquareDots
@@ -147,11 +149,10 @@ export default function Post({ post, id }) {
                                 // comment page
                             }
                         }}
-                        className="h-9 w-9 hoverEffect p-2 hover:text-sky-500 hover:bg-sky-100"
+                        className="h-9 w-9 hoverEffect p-2 mr-2 hover:text-sky-500 hover:bg-sky-100"
                     />
-                    {comments.length > 0 && (
-                        <span className="text-sm">{comments.length}</span>
-                    )}
+
+                    <span className="text-sm">{post?.commentsCount}</span>
                 </div>
                 {currentUser?._id === post?.owner._id && (
                     <BiTrash

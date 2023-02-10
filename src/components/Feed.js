@@ -6,14 +6,17 @@ import Post from "./Post";
 import { fetchPublicFeed } from "@/services/post.service";
 export default function Feed() {
     const [posts, setPosts] = useState([]);
-    const [stories, setStories] = useState([]);
+    const [hasLiked, setHasLiked] = useState([]);
     const [page, setPage] = useState(2);
     // for SSR + CSH Rendering strategy
     const reactId = useId();
 
     useEffect(() => {
         fetchPublicFeed({ page: 1, refresh: 1 })
-            .then((res) => setPosts(res.data?.data?.feed))
+            .then((res) => {
+                setPosts(res.data?.data?.feed);
+                setHasLiked(res.data?.data?.meta?.isLiked);
+            })
             .catch((err) => console.log(err));
     }, []);
 
@@ -66,7 +69,12 @@ export default function Feed() {
                             }}
                             whileTap={{ scale: 0.95 }}
                         >
-                            <Post key={post._id} id={post._id} post={post} />
+                            <Post
+                                key={post._id}
+                                id={post._id}
+                                post={post}
+                                hasLiked={hasLiked[i]}
+                            />
                         </motion.div>
                     ))}
                 </AnimatePresence>
