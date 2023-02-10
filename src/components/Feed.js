@@ -3,6 +3,7 @@ import { useEffect, useId, useState } from "react";
 import { BiRefresh } from "react-icons/bi";
 import { AnimatePresence, motion } from "framer-motion";
 import Post from "./Post";
+import { fetchPublicFeed } from "@/services/post.service";
 export default function Feed() {
     const [posts, setPosts] = useState([]);
     const [stories, setStories] = useState([]);
@@ -11,13 +12,8 @@ export default function Feed() {
     const reactId = useId();
 
     useEffect(() => {
-        axios
-            .get(`http://localhost:3000/api/v0/post?page=1`)
-            .then((x) => setPosts(x.data["data"]["feed"]))
-            .catch((err) => console.log(err));
-        axios
-            .get(`http://localhost:3000/api/v0/story`)
-            .then((x) => setStories(x.data["data"]))
+        fetchPublicFeed({ page: 1, refresh: 1 })
+            .then((res) => setPosts(res.data?.data?.feed))
             .catch((err) => console.log(err));
     }, []);
 
@@ -35,9 +31,8 @@ export default function Feed() {
     }, [page]);
 
     useEffect(() => {
-        axios
-            .get(`http://localhost:3000/api/v0/post?page=${page}`)
-            .then((x) => setPosts((old) => old.concat(x.data["data"]["feed"])))
+        fetchPublicFeed({ page: page, refresh: 0 })
+            .then((res) => setPosts((old) => old.concat(res.data?.data?.feed)))
             .catch((err) => console.log(err));
     }, [page]);
 
