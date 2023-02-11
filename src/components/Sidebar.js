@@ -1,14 +1,17 @@
-import Image from "next/image";
 import {
     BiStats,
     BiUser,
     BiHomeAlt,
     BiMessageSquareDots,
+    BiDotsHorizontalRounded,
 } from "react-icons/bi";
 import { useRouter } from "next/router";
 import SidebarMenuItem from "./SidebarMenuItem";
+import { useRecoilValue } from "recoil";
+import { userState } from "@/atoms/userAtom";
 
 export default function Sidebar() {
+    const currentUser = useRecoilValue(userState);
     const router = useRouter();
     function onSignOut() {
         // logout
@@ -17,7 +20,7 @@ export default function Sidebar() {
         <div className="hidden sm:flex flex-col p-2 xl:items-start fixed h-full xl:ml-24">
             {/* Logo */}
             <div className=" p-0 xl:px-1">
-                <h1 className="font-black text-2xl text-center p-2">
+                <h1 className="hidden font-black text-2xl text-center p-2   xl:flex 2xl:flex">
                     ROOT<span className="text-cyan-400">NODE</span>
                 </h1>
             </div>
@@ -25,17 +28,50 @@ export default function Sidebar() {
             {/* Nav */}
             <div className="mt-4 mb-2.5 xl:items-start text-rn-white">
                 <SidebarMenuItem text="Home" Icon={BiHomeAlt} active />
-                <SidebarMenuItem text="Node" Icon={BiStats} />
-                <SidebarMenuItem text="Message" Icon={BiMessageSquareDots} />
-                <SidebarMenuItem text="Profile" Icon={BiUser} />
+                {currentUser && (
+                    <>
+                        <SidebarMenuItem text="Node" Icon={BiStats} />
+                        <SidebarMenuItem
+                            text="Message"
+                            Icon={BiMessageSquareDots}
+                        />
+                        <SidebarMenuItem text="Profile" Icon={BiUser} />
+                    </>
+                )}
             </div>
 
-            <button
-                onClick={() => router.push("/auth/login")}
-                className="bg-cyan-400 text-rn-white rounded-full w-36 h-12 font-bold shadow-md hover:brightness-90 text-lg hidden xl:inline"
-            >
-                Login
-            </button>
+            {currentUser ? (
+                <>
+                    <button className="bg-cyan-400 text-white rounded-full w-56 h-12 font-bold shadow-md hover:brightness-95 text-lg hidden xl:inline">
+                        Add Post
+                    </button>
+
+                    <div className="hoverEffect flex items-center justify-start xl:justify-start mt-auto mb-10 ml-2 space-x-2">
+                        <img
+                            onClick={onSignOut}
+                            src={`http://localhost:3000/${currentUser?.avatar}`}
+                            alt="user-img"
+                            className="h-10 w-10 rounded-full xl:mr-2"
+                        />
+                        <div className="leading-5 hidden xl:inline">
+                            <h4 className="font-bold">
+                                {currentUser?.fname + currentUser?.lname}
+                            </h4>
+                            <p className="text-gray-500">
+                                @{currentUser?.username}
+                            </p>
+                        </div>
+                        <BiDotsHorizontalRounded className="h-5 xl:ml-8 hidden xl:inline" />
+                    </div>
+                </>
+            ) : (
+                <button
+                    onClick={() => router.push("/auth/login")}
+                    className="bg-cyan-400 text-rn-white rounded-full w-36 h-12 font-bold shadow-md hover:brightness-90 text-lg hidden xl:inline"
+                >
+                    Login
+                </button>
+            )}
         </div>
     );
 }

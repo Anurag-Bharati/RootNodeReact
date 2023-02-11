@@ -56,7 +56,7 @@ export default function Input() {
                             <div className="relative">
                                 <BiXCircle
                                     onClick={() => setSelectedFile(null)}
-                                    className="border-none h-7 text-black absolute cursor-pointer shadow-md  m-1 rounded-full"
+                                    className="border-none h-7 w-7 text-black absolute cursor-pointer shadow-md  m-1 rounded-full "
                                 />
                                 <img
                                     src={selectedFile}
