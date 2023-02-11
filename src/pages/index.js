@@ -14,7 +14,7 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <main className="flex min-h-screen mx-auto  bg-rn-black text-rn-white ">
+            <main className="flex min-h-screen mx-auto bg-rn-black text-rn-white pt-4">
                 {/* Sidebar */}
                 <Sidebar />
 

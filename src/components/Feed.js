@@ -1,9 +1,9 @@
-import axios from "@/services/axios";
 import { useEffect, useId, useState } from "react";
 import { BiRefresh } from "react-icons/bi";
 import { AnimatePresence, motion } from "framer-motion";
 import Post from "./Post";
 import { fetchPublicFeed } from "@/services/post.service";
+import Input from "./PostInput";
 export default function Feed() {
     const [posts, setPosts] = useState([]);
     const [hasLiked, setHasLiked] = useState([]);
@@ -53,7 +53,7 @@ export default function Feed() {
                     <BiRefresh className="h-6 w-6" />
                 </div>
             </div>
-
+            <Input />
             {posts.length === 0 ? (
                 <div className="progress-bar" />
             ) : (
