@@ -2,19 +2,23 @@ import {
     BiMessageSquareDots,
     BiHeart,
     BiTrash,
-    BiDotsHorizontalRounded,
+    BiDotsVerticalRounded,
 } from "react-icons/bi";
 import { BsHeart } from "react-icons/bs";
 import Moment from "react-moment";
-import { useState, useEffect, useId } from "react";
 import { useRouter } from "next/router";
+import { useState, useEffect, useId } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
 import Markdown from "./Markdown";
+import { userState } from "@/atoms/userAtom";
+import { postIdState } from "@/atoms/modalAtom";
 
 export default function Post({ post, id, hasLiked }) {
     const router = useRouter();
     const [likes, setLikes] = useState([]);
     const [comments, setComments] = useState([]);
-    const currentUser = null;
+    const [postId, setPostId] = useRecoilState(postIdState);
+    const currentUser = useRecoilValue(userState);
     // for SSR + CSH Rendering strategy
     const reactId = useId();
     useEffect(
@@ -89,7 +93,7 @@ export default function Post({ post, id, hasLiked }) {
                         <Moment fromNow>{post?.createdAt}</Moment>
                     </span>
                     {/* dot icon */}
-                    <BiDotsHorizontalRounded className="h-10 hoverEffect w-10 hover:bg-sky-100 hover:text-sky-500 p-2 " />
+                    <BiDotsVerticalRounded className="h-9 hoverEffect w-9 hover:bg-cyan-100 hover:text-cyan-500 p-2 ml-2 " />
                 </div>
             </div>
             {/* post text */}

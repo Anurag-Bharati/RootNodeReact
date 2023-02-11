@@ -1,9 +1,11 @@
 import { BiFace, BiImages, BiXCircle } from "react-icons/bi";
 import { useState, useRef } from "react";
+import { useRecoilValue } from "recoil";
+import { userState } from "@/atoms/userAtom";
 
 export default function Input() {
     const [input, setInput] = useState("");
-    const currentUser = {};
+    const currentUser = useRecoilValue(userState);
     const [selectedFile, setSelectedFile] = useState(null);
     const [loading, setLoading] = useState(false);
     const filePickerRef = useRef(null);

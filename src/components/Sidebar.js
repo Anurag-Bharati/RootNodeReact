@@ -3,7 +3,6 @@ import {
     BiUser,
     BiHomeAlt,
     BiMessageSquareDots,
-    BiDotsHorizontalRounded,
 } from "react-icons/bi";
 import { useRouter } from "next/router";
 import SidebarMenuItem from "./SidebarMenuItem";
@@ -15,6 +14,8 @@ export default function Sidebar() {
     const router = useRouter();
     function onSignOut() {
         // logout
+        localStorage.removeItem("token");
+        router.push("/");
     }
     return (
         <div className="hidden sm:flex flex-col p-2 xl:items-start fixed h-full xl:ml-24">
@@ -42,11 +43,7 @@ export default function Sidebar() {
 
             {currentUser ? (
                 <>
-                    <button className="bg-cyan-400 text-white rounded-full w-56 h-12 font-bold shadow-md hover:brightness-95 text-lg hidden xl:inline">
-                        Add Post
-                    </button>
-
-                    <div className="hoverEffect flex items-center justify-start xl:justify-start mt-auto mb-10 ml-2 space-x-2">
+                    <div className="hoverEffect flex items-center justify-start xl:justify-start mt-auto mb-10 ml-2 space-x-2 pr-4">
                         <img
                             onClick={onSignOut}
                             src={`http://localhost:3000/${currentUser?.avatar}`}
@@ -61,7 +58,6 @@ export default function Sidebar() {
                                 @{currentUser?.username}
                             </p>
                         </div>
-                        <BiDotsHorizontalRounded className="h-5 xl:ml-8 hidden xl:inline" />
                     </div>
                 </>
             ) : (
