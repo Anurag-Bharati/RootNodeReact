@@ -17,8 +17,8 @@ export default function Home() {
 
             <main className="flex min-h-screen mx-auto bg-rn-black text-rn-white pt-4">
                 {/* Preserves User Session */}
-                <PresistSession />
 
+                <PresistSession />
                 {/* Sidebar */}
                 <Sidebar />
 
