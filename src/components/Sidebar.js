@@ -15,7 +15,7 @@ export default function Sidebar() {
     function onSignOut() {
         // logout
         localStorage.removeItem("token");
-        router.push("/");
+        router.reload();
     }
     return (
         <div className="hidden sm:flex flex-col p-2 xl:items-start fixed h-full xl:ml-24">
