@@ -14,12 +14,12 @@ import { userState } from "../atoms/userAtom";
 export default function Comment({ comment, commentId, pid }) {
     // for more complex init state use function since param method runs in every call
     const [likes, setLikes] = useState(() => {
-        // DUMMY_VALUE
         return [];
     });
     // this runs everytime this component is called.
     const [hasLiked, setHasLiked] = useState(false);
     // const [open, setOpen] = useRecoilState(modalState);
+    // TODO
     const [postId, setPostId] = useRecoilState(postIdState);
     const [currentUser] = useRecoilState(userState);
     const router = useRouter();
@@ -33,7 +33,6 @@ export default function Comment({ comment, commentId, pid }) {
     }, [pid, commentId]);
 
     useEffect(() => {
-        // DUMMY_VALUE
         // For logged in user like state
         setHasLiked();
     }, [likes, currentUser]);

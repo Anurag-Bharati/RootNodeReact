@@ -2,10 +2,10 @@ import React from "react";
 
 export default function Tooltip({ message, children, invertY }) {
     return (
-        <div class="group relative flex">
+        <div className="group relative flex">
             {children}
             <span
-                class={`absolute scale-0 z-10 ${
+                className={`absolute scale-0 z-10 ${
                     invertY ? "bottom-4 -right-10" : "top-4 -left-10"
                 } transition-all rounded-full bg-rn-black p-2 text-xs text-white group-hover:scale-100 text-center`}
             >
