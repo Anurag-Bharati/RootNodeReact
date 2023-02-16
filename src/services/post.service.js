@@ -38,5 +38,8 @@ export const likeUnlike = ({ id }) => {
 };
 
 export const createPost = async ({ formData }) => {
-    return axios.post(`http://localhost:3000/api/v0/post`, formData);
+    const token = localStorage.getItem("token");
+    return axios.post(`http://localhost:3000/api/v0/post`, formData, {
+        headers: { Authorization: token, "Content-Type": "multpart/form-data" },
+    });
 };
