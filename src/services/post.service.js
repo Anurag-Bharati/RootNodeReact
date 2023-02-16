@@ -36,3 +36,7 @@ export const likeUnlike = ({ id }) => {
         { headers: { Authorization: token } }
     );
 };
+
+export const createPost = async ({ formData }) => {
+    return axios.post(`http://localhost:3000/api/v0/post`, formData);
+};
