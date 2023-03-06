@@ -16,7 +16,7 @@ const PresistSession = () => {
                     headers: { Authorization: token },
                 });
                 const user = res.data?.user;
-                if (user) setScopeState(1);
+                if (user) setScopeState(0);
                 setCurrentUser(user);
             } catch (error) {
                 console.error(error);
@@ -27,9 +27,6 @@ const PresistSession = () => {
         token ? verifySession() : setIsLoading(false);
     }, []);
 
-    useEffect(() => {
-        console.log(isLoading);
-    }, [isLoading]);
     return <></>;
 };
 

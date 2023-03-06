@@ -4,61 +4,39 @@ import {
     BiTrash,
     BiDotsVerticalRounded,
 } from "react-icons/bi";
-import { BsHeart } from "react-icons/bs";
 import Moment from "react-moment";
 import { useRouter } from "next/router";
-import { useState, useEffect, useId } from "react";
+import { useState, useId } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import Markdown from "./Markdown";
 import { userState } from "@/atoms/userAtom";
 import { postIdState } from "@/atoms/modalAtom";
-
+import { likeUnlike } from "@/services/post.service";
 export default function Post({ post, id, hasLiked }) {
+    const [liked, setLiked] = useState(hasLiked | false);
+    const [likeCount, setLikeCount] = useState(post?.likesCount | 0);
     const router = useRouter();
-    const [likes, setLikes] = useState([]);
-    const [comments, setComments] = useState([]);
     const [postId, setPostId] = useRecoilState(postIdState);
     const currentUser = useRecoilValue(userState);
+
     // for SSR + CSH Rendering strategy
     const reactId = useId();
-    useEffect(
-        () => {
-            // fetch likes
-            //  setLikes(snapshot.docs)
-        },
-        [
-            /**Dependency to watch */
-        ]
-    );
 
-    useEffect(
-        () => {
-            // axios
-            //     .get(`http://localhost:3000/api/v0/post/${id}/comment`)
-            //     .then((x) => console.log(x));
-        },
-        [
-            /**Dependency to watch */
-        ]
-    );
-
-    useEffect(() => {
-        // set like state of user
-        // setHasLiked(true);
-    }, [likes, currentUser]);
-
-    async function likePost() {
+    const likePost = () => {
         if (currentUser) {
-            if (hasLiked) {
-                // remove like
-            } else {
-                // add like
-            }
+            likeUnlike({ id: id })
+                .then((res) => {
+                    liked
+                        ? setLikeCount((old) => old - 1)
+                        : setLikeCount((old) => old + 1);
+                    setLiked(res.data?.data?.liked);
+                })
+                .catch((err) => console.error(err));
         } else {
             // signIn();
             router.push("/auth/login");
         }
-    }
+    };
 
     async function deletePost() {
         if (window.confirm("Are you sure you want to delete this post?")) {
@@ -113,7 +91,11 @@ export default function Post({ post, id, hasLiked }) {
                 {post.mediaFiles.map((media, i) => (
                     <img
                         key={reactId + `${i}:`}
-                        onClick={() => router.push(`/posts/${id}`)}
+                        onClick={() =>
+                            currentUser
+                                ? router.push(`/posts/${id}`)
+                                : router.push("/auth/login")
+                        }
                         className="rounded-lg w-full max-h-80 object-cover overflow-hidden"
                         src={`http://localhost:3000/${media?.url}`}
                         alt="post-image"
@@ -123,8 +105,8 @@ export default function Post({ post, id, hasLiked }) {
             {/* icons */}
             <div className="flex justify-left pt-2 pb-2 space-x-4">
                 <div className="flex items-center">
-                    {hasLiked ? (
-                        <BsHeart
+                    {liked ? (
+                        <BiHeart
                             onClick={likePost}
                             className="h-9 w-9 hoverEffect p-2 mr-2 text-[#ef476fe6] hover:bg-red-100"
                         />
@@ -137,10 +119,10 @@ export default function Post({ post, id, hasLiked }) {
 
                     <span
                         className={`${
-                            hasLiked && "text-[#ef476fe6]"
+                            liked && "text-[#ef476fe6]"
                         } text-sm select-none`}
                     >
-                        {post?.likesCount}
+                        {likeCount}
                     </span>
                 </div>
                 <div className="flex items-center select-none ">

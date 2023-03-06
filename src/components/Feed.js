@@ -52,14 +52,22 @@ export default function Feed() {
 
     useEffect(() => {
         fetchPublicFeed({ page: page, refresh: 0 })
-            .then((res) => setPosts((old) => old.concat(res.data?.data?.feed)))
+            .then((res) => {
+                setPosts((old) => old.concat(res.data?.data?.feed));
+                setHasLiked((old) => old.concat(res.data?.data?.meta?.isLiked));
+            })
             .catch((err) => console.log(err));
     }, [page]);
 
     useEffect(() => {
         if (scopeState !== 1) return;
         fetchMutualFeed({ page: _page, refresh: 0 })
-            .then((res) => _setPosts((old) => old.concat(res.data?.data?.feed)))
+            .then((res) => {
+                _setPosts((old) => old.concat(res.data?.data?.feed));
+                _setHasLiked((old) =>
+                    old.concat(res.data?.data?.meta?.isLiked)
+                );
+            })
             .catch((err) => console.log(err));
     }, [_page]);
 
