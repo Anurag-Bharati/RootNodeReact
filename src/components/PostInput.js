@@ -1,12 +1,13 @@
 import { BiFace, BiImages, BiXCircle, BiCode } from "react-icons/bi";
 import { useState, useRef } from "react";
+import { createPost } from "@/services/post.service";
 import { useRecoilValue } from "recoil";
 import { userState } from "@/atoms/userAtom";
 import { createPost } from "@/services/post.service";
 
 export default function Input() {
-    const [input, setInput] = useState("");
     const currentUser = useRecoilValue(userState);
+    const [input, setInput] = useState("");
     const [isMD, setIsMD] = useState(false);
     const [selectedFile, setSelectedFile] = useState(null);
     const [image, setImage] = useState(null);
@@ -94,7 +95,6 @@ export default function Input() {
                                             onClick={() => setIsMD(!isMD)}
                                         />
                                     </div>
-
                                     <button
                                         onClick={sendPost}
                                         disabled={!input.trim()}
