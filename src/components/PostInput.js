@@ -1,11 +1,15 @@
 import { BiFace, BiImages, BiXCircle } from "react-icons/bi";
 import { useState, useRef } from "react";
 import { createPost } from "@/services/post.service";
+import { useRecoilValue } from "recoil";
+import { userState } from "@/atoms/userAtom";
 
 export default function Input() {
+    const currentUser = useRecoilValue(userState);
     const [input, setInput] = useState("");
     const currentUser = {};
     const [isMD, setIsMD] = useState(false);
+
     const [selectedFile, setSelectedFile] = useState(null);
     const [loading, setLoading] = useState(false);
     const filePickerRef = useRef(null);
@@ -58,7 +62,7 @@ export default function Input() {
                             <div className="relative">
                                 <BiXCircle
                                     onClick={() => setSelectedFile(null)}
-                                    className="border-none h-7 text-black absolute cursor-pointer shadow-md  m-1 rounded-full"
+                                    className="border-none h-7 w-7 text-black absolute cursor-pointer shadow-md  m-1 rounded-full "
                                 />
                                 <img
                                     src={selectedFile}

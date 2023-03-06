@@ -1,4 +1,5 @@
 import Feed from "@/components/Feed";
+import PresistSession from "@/components/PresistSession";
 import Sidebar from "@/components/Sidebar";
 import Widgets from "@/components/Widgets";
 import Head from "next/head";
@@ -15,6 +16,9 @@ export default function Home() {
             </Head>
 
             <main className="flex min-h-screen mx-auto bg-rn-black text-rn-white pt-4">
+                {/* Preserves User Session */}
+
+                <PresistSession />
                 {/* Sidebar */}
                 <Sidebar />
 

@@ -1,11 +1,14 @@
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
+import { useSetRecoilState } from "recoil";
 import { login } from "@/services/auth.service";
+import { userState } from "@/atoms/userAtom";
 export default function Login() {
     const router = useRouter();
     const emailRef = useRef();
     const pwdRef = useRef();
     const [formErr, setError] = useState("");
+    const setUser = useSetRecoilState(userState);
 
     useEffect(() => {
         setError("");
@@ -23,7 +26,9 @@ export default function Login() {
                 password: pwdRef.current.value,
             });
             const accessToken = res?.data?.accessToken;
+            const user = res?.data?.rootnode;
             localStorage.setItem("token", `Bearer ${accessToken}`);
+            setUser(user);
             router.push("/");
         } catch (err) {
             if (!err?.response) setError("No Server Response");

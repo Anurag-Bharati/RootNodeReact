@@ -1,0 +1,53 @@
+/* Radio button */
+.selector {
+    display: flex;
+    height: 36px;
+    align-items: center;
+    justify-content: space-evenly;
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    margin-bottom: 20px;
+}
+.selector .selection {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    margin-left: -1px;
+    background-clip: border-box;
+    transform: scale3d(1, 1, 1);
+    border: 1px solid rgb(255, 255, 255, 0.1);
+    border-radius: 50px !important;
+    transition: 0.15s ease-in-out background-color;
+    max-width: 200px;
+}
+.selector .selection.selected {
+    background-color: rgb(255, 255, 255, 0.05) !important;
+}
+
+.selector .selection:hover {
+    background-color: rgb(255, 255, 255, 0.05) !important;
+}
+.selector .selection:first-child {
+    margin-left: 0;
+    border-radius: 3px 0 0 3px;
+}
+.selector .selection:last-child {
+    border-radius: 0 3px 3px 0;
+}
+
+.selector.width-per-item {
+    width: auto;
+}
+.selector.width-per-item .selection {
+    min-width: 135px;
+    max-width: 135px;
+    width: 135px;
+}
+/* End of Radio button  */
