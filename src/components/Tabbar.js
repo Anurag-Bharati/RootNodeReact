@@ -8,7 +8,7 @@ function Tabbar() {
     const currentUser = useRecoilValue(userState);
 
     return (
-        <div className={styles.selector}>
+        <div className={`${styles.selector} mx-4 sm:mx-2 gap-4`}>
             <div
                 className={`${styles.selection} ${
                     selected == 0 ? styles.selected : null

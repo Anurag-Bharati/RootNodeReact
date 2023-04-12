@@ -1,6 +1,5 @@
 import { BiFace, BiImages, BiXCircle, BiCode } from "react-icons/bi";
 import { useState, useRef } from "react";
-import { createPost } from "@/services/post.service";
 import { useRecoilValue } from "recoil";
 import { userState } from "@/atoms/userAtom";
 import Image from "next/image";
