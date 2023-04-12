@@ -10,6 +10,7 @@ import { useRecoilState } from "recoil";
 import { modalState, postIdState } from "../atoms/modalAtom";
 import { useRouter } from "next/router";
 import { userState } from "../atoms/userAtom";
+import Image from "next/image";
 
 export default function Comment({ comment, commentId, pid }) {
     // for more complex init state use function since param method runs in every call
@@ -59,10 +60,12 @@ export default function Comment({ comment, commentId, pid }) {
     return (
         <div className="flex p-3 cursor-pointer bg-white10 my-3 rounded-2xl pl-4">
             {/* user image */}
-            <img
+            <Image
+                height={300}
+                width={300}
                 className="h-11 w-11 rounded-full mr-4"
                 src={comment?.user?.avatar}
-                alt="user-img"
+                alt="user-Image"
             />
             {/* right side */}
             <div className="flex-1">

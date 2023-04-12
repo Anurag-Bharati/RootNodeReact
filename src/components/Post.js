@@ -12,6 +12,7 @@ import Markdown from "./Markdown";
 import { userState } from "@/atoms/userAtom";
 import { postIdState } from "@/atoms/modalAtom";
 import { likeUnlike } from "@/services/post.service";
+import Image from "next/image";
 export default function Post({ post, id, hasLiked }) {
     const [liked, setLiked] = useState(hasLiked | false);
     const [likeCount, setLikeCount] = useState(post?.likesCount | 0);
@@ -52,7 +53,9 @@ export default function Post({ post, id, hasLiked }) {
             <div className="flex items-center justify-between mb-2">
                 {/* Post Header*/}
                 <div className="flex items-center space-x-1 whitespace-nowrap">
-                    <img
+                    <Image
+                        width={300}
+                        height={300}
                         className="h-11 w-11 rounded-full mr-2"
                         src={`${post?.owner.avatar}`}
                         alt="user-img"
@@ -89,7 +92,9 @@ export default function Post({ post, id, hasLiked }) {
 
             <div className={`grid gap-2 grid-cols-${gridCols}`}>
                 {post.mediaFiles.map((media, i) => (
-                    <img
+                    <Image
+                        width={1920}
+                        height={1080}
                         key={reactId + `${i}:`}
                         onClick={() =>
                             currentUser

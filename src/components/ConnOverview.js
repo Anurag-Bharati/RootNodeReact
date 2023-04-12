@@ -4,6 +4,7 @@ import React, { useEffect, useId, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { BiPlus } from "react-icons/bi";
 import Tooltip from "./Tooltip";
+import Image from "next/image";
 function ConnOverview() {
     const currentUser = useRecoilValue(userState);
     const [recentConns, setRecentConns] = useState([]);
@@ -23,7 +24,9 @@ function ConnOverview() {
                 <span className="absolute h-1 my-5 bg-[#eeeeee] w-5/6 rounded-full"></span>
                 <span className="absolute w-1 mx-5 bg-[#eeeeee] h-1/3 rounded-full translate-y-1/4 right-4"></span>
                 <span className="h-10 bg-[#eeeeee] w-10 rounded-full z-10">
-                    <img
+                    <Image
+                        height={300}
+                        width={300}
                         className="object-cover rounded-full w-10 h-10"
                         src={`${currentUser?.avatar}`}
                         alt="user-img"
@@ -32,7 +35,9 @@ function ConnOverview() {
                 {oldConns.map((e, i) => (
                     <Tooltip message={e.user.username} key={reactId + i + ":"}>
                         <span className="h-10 bg-[#eeeeee] w-10 rounded-full z-10">
-                            <img
+                            <Image
+                                height={300}
+                                width={300}
                                 className="object-cover rounded-full w-10 h-10"
                                 src={`${e?.user.avatar}`}
                                 alt="user-img"
@@ -62,7 +67,9 @@ function ConnOverview() {
                         key={reactId + i + ":"}
                     >
                         <span className="h-10 bg-[#eeeeee] w-10 rounded-full z-10">
-                            <img
+                            <Image
+                                height={300}
+                                width={300}
                                 className="object-cover rounded-full w-10 h-10"
                                 src={`${e?.user.avatar}`}
                                 alt="user-img"

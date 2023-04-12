@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import SidebarMenuItem from "./SidebarMenuItem";
 import { useRecoilValue } from "recoil";
 import { userState } from "@/atoms/userAtom";
+import Image from "next/image";
 
 export default function Sidebar() {
     const currentUser = useRecoilValue(userState);
@@ -45,7 +46,9 @@ export default function Sidebar() {
             {currentUser ? (
                 <>
                     <div className="hoverEffect flex items-center justify-start xl:justify-start mt-auto mb-10 ml-2 space-x-2 pr-4">
-                        <img
+                        <Image
+                            width={300}
+                            height={300}
                             onClick={onSignOut}
                             src={`${currentUser?.avatar}`}
                             alt="user-img"

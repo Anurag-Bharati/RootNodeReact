@@ -3,6 +3,7 @@ import { useState, useRef } from "react";
 import { createPost } from "@/services/post.service";
 import { useRecoilValue } from "recoil";
 import { userState } from "@/atoms/userAtom";
+import Image from "next/image";
 
 export default function Input() {
     const currentUser = useRecoilValue(userState);
@@ -60,7 +61,9 @@ export default function Input() {
                                     onClick={() => setSelectedFile(null)}
                                     className="border-none h-7 w-7 text-black absolute cursor-pointer shadow-md  m-1 rounded-full "
                                 />
-                                <img
+                                <Image
+                                    height={1080}
+                                    width={1920}
                                     src={selectedFile}
                                     className={`${loading && "animate-pulse"}`}
                                 />

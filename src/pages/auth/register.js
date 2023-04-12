@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useRef, useState } from "react";
 import { register } from "@/services/auth.service";
+import Image from "next/image";
 export default function Register() {
     const router = useRouter();
     const [err, setError] = useState({});

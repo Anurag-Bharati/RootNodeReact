@@ -50,7 +50,7 @@ export default function Login() {
                 <div className="md:w-1/2 px-8 md:px-16">
                     <h2 className="font-bold text-2xl text-rn-white">Login</h2>
                     <p className="text-xs mt-4 text-rn-white">
-                        It's all starts here
+                        It&apos;s all starts here
                     </p>
 
                     <form
@@ -103,7 +103,7 @@ export default function Login() {
                     <div className="mt-5  text-rn-white"></div>
 
                     <div className="mt-3 text-xs flex justify-between items-center text-rn-white">
-                        <p>Don't have an account?</p>
+                        <p>Don&apos;t have an account?</p>
                         <button
                             onClick={registerPage}
                             className="py-2 px-5  border rounded-xl hover:scale-110 duration-300"

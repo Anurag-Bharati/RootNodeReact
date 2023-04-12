@@ -1,5 +1,6 @@
 import { userState } from "@/atoms/userAtom";
 import { fetchRandom, fetchRecomm } from "@/services/conn.service";
+import Image from "next/image";
 import React, { useEffect, useId, useState } from "react";
 import { useRecoilValue } from "recoil";
 function NodeGrid({ type }) {
@@ -23,7 +24,9 @@ function NodeGrid({ type }) {
                           className="h-30  w-24 rounded-2xl m-1 box-border"
                           key={reactId + i + ":randm:"}
                       >
-                          <img
+                          <Image
+                              width={300}
+                              height={300}
                               className="object-cover rounded-2xl "
                               src={e?.avatar}
                               alt="user-img"
@@ -36,7 +39,9 @@ function NodeGrid({ type }) {
                           className="h-30  w-24 rounded-2xl m-1 box-border"
                           key={reactId + i + ":recom:"}
                       >
-                          <img
+                          <Image
+                              width={300}
+                              height={300}
                               className="object-cover rounded-2xl "
                               src={e?.avatar}
                               alt="user-img"
