@@ -7,7 +7,10 @@ import Input from "./PostInput";
 import Tabbar from "./Tabbar";
 import { useRecoilValue } from "recoil";
 import { feedScope } from "@/atoms/scopeAtom";
+import { useRouter } from "next/navigation";
+
 export default function Feed() {
+    const router = useRouter();
     const [posts, setPosts] = useState([]);
     const [_posts, _setPosts] = useState([]);
     const [hasLiked, setHasLiked] = useState([]);
@@ -17,6 +20,8 @@ export default function Feed() {
     // for SSR + CSH Rendering strategy
     const reactId = useId();
     const scopeState = useRecoilValue(feedScope);
+
+    const refreshPage = () => router.refresh();
 
     useEffect(() => {
         fetchPublicFeed({ page: 1, refresh: 1 })
@@ -81,7 +86,10 @@ export default function Feed() {
                 <h2 className="text-lg sm:text-xl font-bold cursor-pointer">
                     Home
                 </h2>
-                <div className="hoverEffect flex items-center justify-center px-0 ml-auto w-9 h-9">
+                <div
+                    className="hoverEffect flex items-center justify-center px-0 ml-auto w-9 h-9"
+                    onClick={refreshPage}
+                >
                     <BiRefresh className="h-6 w-6" />
                 </div>
             </div>
