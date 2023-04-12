@@ -25,7 +25,7 @@ function ConnOverview() {
                 <span className="h-10 bg-[#eeeeee] w-10 rounded-full z-10">
                     <img
                         className="object-cover rounded-full w-10 h-10"
-                        src={`http://localhost:3000/${currentUser?.avatar}`}
+                        src={`${currentUser?.avatar}`}
                         alt="user-img"
                     />
                 </span>
@@ -34,7 +34,7 @@ function ConnOverview() {
                         <span className="h-10 bg-[#eeeeee] w-10 rounded-full z-10">
                             <img
                                 className="object-cover rounded-full w-10 h-10"
-                                src={`http://localhost:3000/${e?.user.avatar}`}
+                                src={`${e?.user.avatar}`}
                                 alt="user-img"
                             />
                         </span>
@@ -64,7 +64,7 @@ function ConnOverview() {
                         <span className="h-10 bg-[#eeeeee] w-10 rounded-full z-10">
                             <img
                                 className="object-cover rounded-full w-10 h-10"
-                                src={`http://localhost:3000/${e?.user.avatar}`}
+                                src={`${e?.user.avatar}`}
                                 alt="user-img"
                             />
                         </span>

@@ -3,7 +3,6 @@ import { useState, useRef } from "react";
 import { createPost } from "@/services/post.service";
 import { useRecoilValue } from "recoil";
 import { userState } from "@/atoms/userAtom";
-import { createPost } from "@/services/post.service";
 
 export default function Input() {
     const currentUser = useRecoilValue(userState);

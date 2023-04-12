@@ -54,11 +54,11 @@ export default function Post({ post, id, hasLiked }) {
                 <div className="flex items-center space-x-1 whitespace-nowrap">
                     <img
                         className="h-11 w-11 rounded-full mr-2"
-                        src={`http://localhost:3000/${post?.owner.avatar}`}
+                        src={`${post?.owner.avatar}`}
                         alt="user-img"
                     />
                     <div className="flex flex-col space-y-0 ">
-                        <h4 className="font-bold text-[15px] sm:text-[16px] hover:underline">
+                        <h4 className="font-bold text-[15px] sm:text-[16px] hover:underline capitalize">
                             {post?.owner.fname + " " + post?.owner.lname}
                         </h4>
                         <span className="text-sm sm:text-[15px]">
@@ -97,7 +97,7 @@ export default function Post({ post, id, hasLiked }) {
                                 : router.push("/auth/login")
                         }
                         className="rounded-lg w-full max-h-80 object-cover overflow-hidden"
-                        src={`http://localhost:3000/${media?.url}`}
+                        src={`${media?.url}`}
                         alt="post-image"
                     />
                 ))}

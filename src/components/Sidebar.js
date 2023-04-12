@@ -17,6 +17,7 @@ export default function Sidebar() {
         localStorage.removeItem("token");
         router.reload();
     }
+    console.log(currentUser?.avatar);
     return (
         <div className="hidden sm:flex flex-col p-2 xl:items-start fixed h-full xl:ml-24">
             {/* Logo */}
@@ -46,7 +47,7 @@ export default function Sidebar() {
                     <div className="hoverEffect flex items-center justify-start xl:justify-start mt-auto mb-10 ml-2 space-x-2 pr-4">
                         <img
                             onClick={onSignOut}
-                            src={`http://localhost:3000/${currentUser?.avatar}`}
+                            src={`${currentUser?.avatar}`}
                             alt="user-img"
                             className="h-10 w-10 rounded-full xl:mr-2"
                         />

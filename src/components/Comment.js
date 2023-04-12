@@ -61,7 +61,7 @@ export default function Comment({ comment, commentId, pid }) {
             {/* user image */}
             <img
                 className="h-11 w-11 rounded-full mr-4"
-                src={"http://localhost:3000/" + comment?.user?.avatar}
+                src={comment?.user?.avatar}
                 alt="user-img"
             />
             {/* right side */}

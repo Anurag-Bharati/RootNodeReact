@@ -25,7 +25,7 @@ function NodeGrid({ type }) {
                       >
                           <img
                               className="object-cover rounded-2xl "
-                              src={`http://localhost:3000/${e?.avatar}`}
+                              src={e?.avatar}
                               alt="user-img"
                           />
                           <p className="text-center">{e?.fname + e?.lname}</p>
@@ -38,7 +38,7 @@ function NodeGrid({ type }) {
                       >
                           <img
                               className="object-cover rounded-2xl "
-                              src={`http://localhost:3000/${e?.avatar}`}
+                              src={e?.avatar}
                               alt="user-img"
                           />
                           <p className="text-center overflow-hidden text-ellipsis">
