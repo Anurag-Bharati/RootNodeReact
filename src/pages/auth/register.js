@@ -30,7 +30,7 @@ export default function Register() {
         router.push("/auth/login");
     };
     return (
-        <section className="bg-rn-black min-h-screen flex items-center justify-center">
+        <section className="bg-rn-black min-h-screen flex items-center justify-center no-select">
             {/*  register container  */}
             <div className="bg-white10 flex rounded-2xl shadow-lg max-w-3xl px-5 py-5 items-center">
                 {/* form  */}
