@@ -25,8 +25,9 @@ function ConnOverview() {
                 <span className="absolute w-1 mx-5 bg-[#eeeeee] h-1/3 rounded-full translate-y-1/4 right-4"></span>
                 <span className="h-10 bg-[#eeeeee] w-10 rounded-full z-10">
                     <Image
-                        height={300}
-                        width={300}
+                        quality={80}
+                        height={64}
+                        width={64}
                         className="object-cover rounded-full w-10 h-10"
                         src={`${currentUser?.avatar}`}
                         alt="user-img"
@@ -36,8 +37,9 @@ function ConnOverview() {
                     <Tooltip message={e.user.username} key={reactId + i + ":"}>
                         <span className="h-10 bg-[#eeeeee] w-10 rounded-full z-10">
                             <Image
-                                height={300}
-                                width={300}
+                                quality={80}
+                                height={64}
+                                width={64}
                                 className="object-cover rounded-full w-10 h-10"
                                 src={`${e?.user.avatar}`}
                                 alt="user-img"
@@ -68,8 +70,10 @@ function ConnOverview() {
                     >
                         <span className="h-10 bg-[#eeeeee] w-10 rounded-full z-10">
                             <Image
-                                height={300}
-                                width={300}
+                                priority={true}
+                                quality={80}
+                                height={64}
+                                width={64}
                                 className="object-cover rounded-full w-10 h-10"
                                 src={`${e?.user.avatar}`}
                                 alt="user-img"

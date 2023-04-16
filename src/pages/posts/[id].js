@@ -54,14 +54,14 @@ export default function PostPage() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <main className="flex min-h-screen mx-auto bg-rn-black text-rn-white">
-                <div className="xl:ml-[370px]  xl:min-w-[576px] sm:ml-[73px] flex-grow max-w-xl">
-                    <div className="flex items-center space-x-2  py-2 px-3 sticky top-0 z-50 bg-rn-black text-rn-white ">
+            <main className="flex min-h-screen mx-auto bg-rn-black text-rn-white ">
+                <div className="xl:ml-[370px] xl:min-w-[576px] sm:ml-[73px] flex-grow max-w-xl">
+                    <div className="flex items-center space-x-2 py-2 px-3 sticky top-0 z-50 bg-rn-black text-rn-white m-2 sm:my-2 sm:mx-0">
                         <div
-                            className="hoverEffect"
+                            className="hoverEffect grid place-items-center h-8 sm:h-auto w-8 sm:w-auto mr-2"
                             onClick={() => router.push("/")}
                         >
-                            <BiArrowToLeft className="h-5 " />
+                            <BiArrowToLeft className="h-6 w-auto" />
                         </div>
                         <h2 className="text-lg sm:text-xl font-bold cursor-pointer">
                             Back To Home

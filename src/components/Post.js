@@ -54,16 +54,17 @@ export default function Post({ post, id, hasLiked }) {
                 {/* Post Header*/}
                 <div className="flex items-center space-x-1 whitespace-nowrap">
                     <Image
-                        width={300}
-                        height={300}
+                        quality={80}
+                        width={64}
+                        height={64}
                         className="h-11 w-11 rounded-full mr-2"
                         src={`${post?.owner.avatar}`}
                         alt="user-img"
                     />
                     <div className="flex flex-col space-y-0 ">
-                        <h4 className="font-bold text-[15px] sm:text-[16px] hover:underline capitalize">
+                        <h1 className="font-bold text-[15px] sm:text-[16px] hover:underline capitalize">
                             {post?.owner.fname + " " + post?.owner.lname}
-                        </h4>
+                        </h1>
                         <span className="text-sm sm:text-[15px]">
                             @{post?.owner.username}
                         </span>
@@ -93,8 +94,11 @@ export default function Post({ post, id, hasLiked }) {
             <div className={`grid gap-2 grid-cols-${gridCols}`}>
                 {post.mediaFiles.map((media, i) => (
                     <Image
-                        width={1920}
-                        height={1080}
+                        quality={80}
+                        style={{ objectFit: "cover" }}
+                        loading={i < 8 ? "eager" : "lazy"}
+                        width={800}
+                        height={800}
                         key={reactId + `${i}:`}
                         onClick={() =>
                             currentUser
@@ -104,6 +108,7 @@ export default function Post({ post, id, hasLiked }) {
                         className="rounded-lg w-full max-h-80 object-cover overflow-hidden"
                         src={`${media?.url}`}
                         alt="post-image"
+                        priority={i < 8}
                     />
                 ))}
             </div>

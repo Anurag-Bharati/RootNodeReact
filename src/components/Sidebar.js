@@ -47,17 +47,17 @@ export default function Sidebar() {
                 <>
                     <div className="hoverEffect flex items-center justify-start xl:justify-start mt-auto mb-10 ml-2 space-x-2 pr-4">
                         <Image
-                            width={300}
-                            height={300}
+                            width={64}
+                            height={64}
                             onClick={onSignOut}
                             src={`${currentUser?.avatar}`}
                             alt="user-img"
                             className="h-10 w-10 rounded-full xl:mr-2"
                         />
                         <div className="leading-5 hidden xl:inline">
-                            <h4 className="font-bold">
-                                {currentUser?.fname + currentUser?.lname}
-                            </h4>
+                            <h1 className="font-bold capitalize">
+                                {`${currentUser?.fname} ${currentUser?.lname}`}
+                            </h1>
                             <p className="text-gray-500">
                                 @{currentUser?.username}
                             </p>

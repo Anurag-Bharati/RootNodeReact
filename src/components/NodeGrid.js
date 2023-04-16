@@ -25,8 +25,10 @@ function NodeGrid({ type }) {
                           key={reactId + i + ":randm:"}
                       >
                           <Image
-                              width={300}
-                              height={300}
+                              priority={true}
+                              quality={80}
+                              width={128}
+                              height={128}
                               className="object-cover rounded-2xl "
                               src={e?.avatar}
                               alt="user-img"
@@ -40,8 +42,10 @@ function NodeGrid({ type }) {
                           key={reactId + i + ":recom:"}
                       >
                           <Image
-                              width={300}
-                              height={300}
+                              priority={true}
+                              quality={80}
+                              width={128}
+                              height={128}
                               className="object-cover rounded-2xl "
                               src={e?.avatar}
                               alt="user-img"

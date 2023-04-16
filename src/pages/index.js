@@ -3,6 +3,7 @@ import PresistSession from "@/components/PresistSession";
 import Sidebar from "@/components/Sidebar";
 import Widgets from "@/components/Widgets";
 import Head from "next/head";
+
 export default function Home() {
     return (
         <div>
@@ -13,6 +14,8 @@ export default function Home() {
                     content="RootNode React x Next x TailWindCss"
                 />
                 <link rel="icon" href="/favicon.ico" />
+                <link rel="preconnect" href="https://res.cloudinary.com" />
+                <link rel="dns-prefetch" href="https://res.cloudinary.com" />
             </Head>
 
             <main className="flex min-h-screen mx-auto bg-rn-black text-rn-white pt-4 no-select">

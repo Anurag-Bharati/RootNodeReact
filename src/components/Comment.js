@@ -61,8 +61,9 @@ export default function Comment({ comment, commentId, pid }) {
         <div className="flex p-3 cursor-pointer bg-white10 my-3 rounded-2xl pl-4">
             {/* user image */}
             <Image
-                height={300}
-                width={300}
+                quality={80}
+                height={64}
+                width={64}
                 className="h-11 w-11 rounded-full mr-4"
                 src={comment?.user?.avatar}
                 alt="user-Image"
