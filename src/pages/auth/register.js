@@ -105,9 +105,14 @@ export default function Register() {
                 {/* image */}
                 <div className="md:block hidden w-1/2">
                     <div className="bg-white10 rounded-2xl">
-                        <img
+                        <Image
+                            width={600}
+                            height={600}
+                            quality={80}
+                            priority={true}
                             className="rounded-2xl opacity-75 scale-75"
-                            src="http://localhost:5500/rootnode_w.png"
+                            src="https://res.cloudinary.com/dc2qezmk3/image/upload/v1681659742/uploads/rootnode_w_vhvo8c.png"
+                            alt="root-node-logo"
                         />
                     </div>
                 </div>

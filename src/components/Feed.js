@@ -23,13 +23,24 @@ export default function Feed() {
 
     const refreshPage = () => router.refresh();
 
+    // FIX_THIS RE-RENDER BUG
+
     useEffect(() => {
+        function handleScroll() {
+            const { scrollTop, scrollHeight, clientHeight } =
+                document.documentElement;
+            if (scrollTop + clientHeight >= scrollHeight - 10) {
+                increasePage();
+            }
+        }
         fetchPublicFeed({ page: 1, refresh: 1 })
             .then((res) => {
                 setPosts(res.data?.data?.feed);
                 setHasLiked(res.data?.data?.meta?.isLiked);
             })
             .catch((err) => console.log(err));
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
     useEffect(() => {
@@ -43,26 +54,14 @@ export default function Feed() {
     }, [scopeState]);
 
     useEffect(() => {
-        function handleScroll() {
-            const { scrollTop, scrollHeight, clientHeight } =
-                document.documentElement;
-            if (scrollTop + clientHeight >= scrollHeight - 10) {
-                increasePage();
-            }
-        }
-
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
-
-    useEffect(() => {
+        if (scopeState === 1) return;
         fetchPublicFeed({ page: page, refresh: 0 })
             .then((res) => {
                 setPosts((old) => old.concat(res.data?.data?.feed));
                 setHasLiked((old) => old.concat(res.data?.data?.meta?.isLiked));
             })
             .catch((err) => console.log(err));
-    }, [page]);
+    }, [page, scopeState]);
 
     useEffect(() => {
         if (scopeState !== 1) return;
@@ -74,7 +73,7 @@ export default function Feed() {
                 );
             })
             .catch((err) => console.log(err));
-    }, [_page]);
+    }, [_page, scopeState]);
 
     function increasePage() {
         setPage((x) => x + 1);

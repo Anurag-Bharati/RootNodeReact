@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { useSetRecoilState } from "recoil";
 import { login } from "@/services/auth.service";
 import { userState } from "@/atoms/userAtom";
+import Image from "next/image";
 export default function Login() {
     const router = useRouter();
     const emailRef = useRef();
@@ -12,7 +13,7 @@ export default function Login() {
 
     useEffect(() => {
         setError("");
-    }, [emailRef.current, pwdRef.current]);
+    }, [emailRef, pwdRef]);
 
     useEffect(() => {
         emailRef.current.focus();
@@ -116,9 +117,14 @@ export default function Login() {
                 {/*  image  */}
                 <div className="md:block hidden w-1/2">
                     <div className="bg-white10 rounded-2xl">
-                        <img
+                        <Image
+                            width={600}
+                            height={600}
+                            quality={80}
+                            priority={true}
                             className="rounded-2xl opacity-75 scale-75"
-                            src="http://localhost:5500/rootnode_w.png"
+                            src="https://res.cloudinary.com/dc2qezmk3/image/upload/v1681659742/uploads/rootnode_w_vhvo8c.png"
+                            alt="root-node-logo"
                         />
                     </div>
                 </div>

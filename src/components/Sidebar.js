@@ -18,7 +18,6 @@ export default function Sidebar() {
         localStorage.removeItem("token");
         router.reload();
     }
-    console.log(currentUser?.avatar);
     return (
         <div className="hidden sm:flex flex-col p-2 xl:items-start fixed h-full xl:ml-24">
             {/* Logo */}

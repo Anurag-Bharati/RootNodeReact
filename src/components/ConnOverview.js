@@ -12,11 +12,13 @@ function ConnOverview() {
     const [count, setCount] = useState(0);
     const reactId = useId();
     useEffect(() => {
-        fetchConnOverview().then((res) => {
-            setRecentConns(res.data?.data?.recent);
-            setOldConns(res.data?.data?.old);
-            setCount(res.data?.data?.count);
-        });
+        fetchConnOverview()
+            .then((res) => {
+                setRecentConns(res.data?.data?.recent);
+                setOldConns(res.data?.data?.old);
+                setCount(res.data?.data?.count);
+            })
+            .catch((err) => console.err(err));
     }, [currentUser]);
     return (
         <div className=" h-56 bg-white10 rounded-2xl relative flex flex-col justify-between p-5">

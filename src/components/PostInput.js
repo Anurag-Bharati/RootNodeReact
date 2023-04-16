@@ -66,6 +66,7 @@ export default function Input() {
                                     width={1920}
                                     src={selectedFile}
                                     className={`${loading && "animate-pulse"}`}
+                                    alt="..."
                                 />
                             </div>
                         )}

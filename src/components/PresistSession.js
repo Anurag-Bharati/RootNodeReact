@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import axios from "../services/axios";
 import { userState } from "../atoms/userAtom";
 import { feedScope } from "@/atoms/scopeAtom";
 
 const PresistSession = () => {
-    const [isLoading, setIsLoading] = useState(true);
-    const [currentUser, setCurrentUser] = useRecoilState(userState);
-    const [scopeState, setScopeState] = useRecoilState(feedScope);
+    const [isLoading, setIsLoading] = useState(false);
+    const setCurrentUser = useSetRecoilState(userState);
+    const setScopeState = useSetRecoilState(feedScope);
     useEffect(() => {
+        if (isLoading) return;
+        setIsLoading(true);
         const token = localStorage.getItem("token");
         const verifySession = async () => {
             try {

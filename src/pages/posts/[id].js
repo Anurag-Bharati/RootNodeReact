@@ -35,13 +35,13 @@ export default function PostPage() {
             setComments(res.data?.data?.comments);
             setCommentLiked(res.data?.data?.meta?.isLiked);
         });
-    }, [currentUser]);
+    }, [currentUser, id]);
 
     // get comments of the post
 
-    useEffect(() => {
-        //  setComments()
-    }, [id]);
+    // useEffect(() => {
+    //     //  setComments()
+    // }, [id]);
 
     return (
         <div>
